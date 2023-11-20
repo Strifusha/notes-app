@@ -36,7 +36,7 @@
 
 .nameWrapper:after,
 .passWrapper::after {
-    content: attr(datatitle);
+    content: attr(data-title);
     position: absolute;
     top: 30px;
     right: -200px;

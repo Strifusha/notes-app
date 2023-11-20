@@ -1,12 +1,11 @@
-import React from "react";
-import LoginScreen from './components/LoginScreen';
+import LoginScreen from './components/LoginScreen'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <LoginScreen/>
+      <LoginScreen />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
