@@ -1,7 +1,7 @@
 import '../styles/Password.css'
 import eyeClosed from '../img/eyeClosed.svg'
 import eyeOpen from '../img/eyeOpen.svg'
-import useState from 'react'
+import {useState} from 'react'
 
 function Password({userPass, setUserPass}) {
   const [showPass, setShowPass] = useState(false)

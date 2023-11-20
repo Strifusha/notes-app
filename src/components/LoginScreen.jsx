@@ -1,4 +1,4 @@
-import useState from 'react'
+import {useState} from 'react'
 import SubmitBtn from './SubmitBtn'
 import UserName from './UserName'
 import Password from './Password'
