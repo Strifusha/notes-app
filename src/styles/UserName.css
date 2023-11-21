@@ -1,0 +1,24 @@
+.nameWrapper{
+    width: 50%;
+    position: relative;
+}
+
+.usernameInput{
+   position: relative;
+    width: 80%;
+    padding: 20px 30px;
+    margin: 25px;
+    border: 3px solid;
+    border-radius: 30px;
+    font-size: 20px;
+}
+
+
+.usernameInput:hover{
+    box-shadow: 0 0 10px rgba(39, 18, 50, 0.5); 
+}
+
+.err-helper{
+    font-size: 15px;
+    color: #ff0000;
+}
