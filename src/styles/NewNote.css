@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newNote {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgb(58, 57, 57);
+    width: 25%;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    min-height: 330px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+  
+.newName, .newTitle, .newText, .newTags, .newColor, .newPrivate {
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 5px;
+}
+
+.newText{
+    position: relative;
+    max-width: 93%;
+    min-width: 93%;
+    min-height: 60px;
+    max-height: 60px;
+}
+
+.newPrivate, .newColor{
+    color: #fff;
+}

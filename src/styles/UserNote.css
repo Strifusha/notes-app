@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+.articleNote {
+    position: relative;
+    height: 30%;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 15px;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: left;
+    min-height: 200px;
+    max-height: 400px;
+
+    @media (max-width: 1010px) {
+        grid-column: span 2;
+    }
+}
+
+.delete-icon {
+    float: right;
+    position: relative;
+    top: 9px;
+    transform: scale(2);
+}
+
+.edit-icon {
+    float: right;
+    position: relative;
+    top: -25px;
+    right: -15px;
+    transform: scale(2);
+}
+
+.favourite-icon{
+    position: relative;
+    float: right;
+    top: -20px;
+    transform: scale(2);
+}
+
+.delete-icon:hover, 
+.edit-icon:hover,
+.favourite-icon:hover{
+    cursor: pointer;
+    transform: scale(2.3);
+}
+
+.noteOwner {
+    margin-bottom: 5px;
+}
+
+.public,
+.private {
+    font-style: italic;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+
+}
+
+.noteTitle {
+    margin-bottom: 5px;
+}
+
+.noteText {
+    font-size: 18px;
+    max-height: 50%;
+    overflow-y: auto;
+}
+
+.tags-container {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.tags {
+    background: #fff;
+    border: 1px solid;
+    border-radius: 10px;
+    font-style: italic;
+    font-size: 13px;
+    padding: 3px;
+    margin-right: 5px;
+}
+
+.private {
+    width: 65px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: green
+}
+
+.public {
+    width: 60px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: rgb(59, 4, 238);
+    color: #fff;
+}

@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+.notes-page{
+    background: #2b2828;
+    height: 100vh;  
+}
+
+#allNotes{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+}
+
+.addNote{
+    position: relative;
+    float: left;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 25px;
+    border: 1px solid;
+    margin: 20px 5px;
+    font-family: 'Ubuntu', sans-serif;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    min-height: 280px;
+    height: 95%;
+}
+
+.addNote:hover{
+    background: #373535;
+    color: #fff;
+    border: 1px solid #fff;
+}
+

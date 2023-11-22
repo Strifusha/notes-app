@@ -1,0 +1,20 @@
+const en = {
+  appName: 'Your notes app',
+  numRequired: 'numbers are required',
+  invalName: 'Invalid username',
+  minLength: 'min length: 4 characters',
+  password: 'Password',
+  invalPass: 'Invalid password',
+  submit: 'Submit',
+  addNote: 'Add note',
+  color: 'Color',
+  privateText: 'Private',
+  myTags: 'Tags',
+  name: 'Name',
+  title: 'Title',
+  text: 'Text',
+  sureDelete: 'Are you sure you want to delete this note?',
+  confirm: 'Confirm',
+  cancel: 'Cancel',
+}
+export default en
