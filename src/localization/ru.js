@@ -15,6 +15,6 @@ const ru = {
   text: 'Текст',
   sureDelete: 'Вы уверены что хотите удалить эту заметку?',
   confirm: 'Подтвердить',
-  cancel: 'Отменить'
+  cancel: 'Отменить',
 }
 export default ru

@@ -16,6 +16,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    text-align: center;
     background: rgb(58, 57, 57);
     width: 25%;
     padding: 20px;
@@ -51,6 +52,28 @@
     max-height: 60px;
 }
 
+.color-container{
+    margin: 10px 0 20px;
+}
+
 .newPrivate, .newColor{
     color: #fff;
+}
+
+.submitNewNote{
+    position: relative;
+    padding: 10px;
+    margin: auto;
+    width: 30%;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    min-width: 100px;
+    border: 1px solid #fff;
+}
+
+.submitNewNote:hover{
+    background: rgb(55, 53, 53);
+    color: #fff;
+    border: 1px solid #fff;
 }

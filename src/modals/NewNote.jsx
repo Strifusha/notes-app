@@ -4,7 +4,7 @@ import {useLocalization} from '../localization/LocalizationContext'
 
 function NewNote({onClose}) {
   const [tags, setTags] = useState('')
-  const {name, title, text, privateText, color, myTags} = useLocalization()
+  const {name, title, text, privateText, color, myTags, submit} = useLocalization()
   const handleInputChange = event => {
     const formattedTags = event.target.value.replace(/\s/g, ',')
     setTags(formattedTags)
@@ -25,7 +25,7 @@ function NewNote({onClose}) {
           type="text"
           placeholder={myTags}
         />
-        <div>
+        <div className="color-container">
           <label htmlFor="checkbox" className="newPrivate">
             {privateText}
             <input type="checkbox" />
@@ -35,6 +35,9 @@ function NewNote({onClose}) {
             <input type="color" />
           </label>
         </div>
+        <button type="button" className="submitNewNote">
+          {submit}
+        </button>
       </div>
     </div>
   )
