@@ -1,13 +1,15 @@
 import '../styles/Password.css'
-import eyeClosed from '../img/eyeClosed.svg'
-import eyeOpen from '../img/eyeOpen.svg'
+import eyeClosed from '../img/eyeClosed.png'
+import eyeOpen from '../img/eyeOpen.png'
 import {useState} from 'react'
+import {useLocalization} from '../localization/LocalizationContext'
 
 function Password({userPass, setUserPass}) {
   const [showPass, setShowPass] = useState(false)
+  const {minLength, password, invalPass} = useLocalization()
 
   return (
-    <div className="passWrapper" data-title="min length: 4 characters">
+    <div className="passWrapper" data-title={minLength}>
       <label htmlFor="password" className="showPass" onClick={() => setShowPass(!showPass)}>
         <img src={showPass ? eyeOpen : eyeClosed} />
       </label>
@@ -15,12 +17,11 @@ function Password({userPass, setUserPass}) {
       <input
         type={showPass ? 'text' : 'password'}
         className="passwordInput"
-        placeholder="password"
-        // value={userPass}
+        placeholder={password}
         onChange={e => setUserPass(e.target.value)}
       />
 
-      {userPass.length < 4 && <p className="err-pass">Invalid password</p>}
+      {userPass.length < 4 && <p className="err-pass">{invalPass}</p>}
     </div>
   )
 }

@@ -1,12 +1,13 @@
 .submit{
-    width: 25%;
+    width: 20%;
+    min-width: 200px;
     padding: 20px;
     margin: 30px;
     border-radius: 35px;
     font-size: 20px;
     font-family: 'Ubuntu', sans-serif;
     cursor: pointer;
-    background-color: #6C63FF;
+    background-color: #494646;
     color: #ffffff;
     transition: transform 500ms ease;
 }
