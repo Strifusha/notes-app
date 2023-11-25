@@ -5,9 +5,11 @@ const en = {
   minLength: 'min length: 4 characters',
   password: 'Password',
   invalPass: 'Invalid password',
-  submit: 'Submit',
+  logIn: 'Log in',
+  logOut: 'Log out',
   addNote: 'Add note',
   color: 'Color',
+  submit: 'Submit',
   privateText: 'Private',
   myTags: 'Tags',
   name: 'Name',
@@ -16,5 +18,9 @@ const en = {
   sureDelete: 'Are you sure you want to delete this note?',
   confirm: 'Confirm',
   cancel: 'Cancel',
+  allNotes: 'All notes',
+  favorite: 'Favorite',
+  changePass: 'Change Password',
+  newPass: 'New Password',
 }
 export default en

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+.navBar{
+    background: #2b2828;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navLink{
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.navLink:hover{
+    color: rgb(239, 212, 203);
+}

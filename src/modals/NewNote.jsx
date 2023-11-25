@@ -4,7 +4,7 @@ import {useLocalization} from '../localization/LocalizationContext'
 
 function NewNote({onClose}) {
   const [tags, setTags] = useState('')
-  const {name, title, text, privateText, color, myTags, submit} = useLocalization()
+  const {name, title, text, privateText, color, myTags, addNote} = useLocalization()
   const handleInputChange = event => {
     const formattedTags = event.target.value.replace(/\s/g, ',')
     setTags(formattedTags)
@@ -36,7 +36,7 @@ function NewNote({onClose}) {
           </label>
         </div>
         <button type="button" className="submitNewNote">
-          {submit}
+          {addNote}
         </button>
       </div>
     </div>

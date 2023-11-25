@@ -1,16 +1,28 @@
-import '../styles/UserNote.css'
-import '../styles/DeleteNote.css'
+import './UserNote.css'
 import {TiDeleteOutline} from 'react-icons/ti'
 import {CiHeart, CiEdit} from 'react-icons/ci'
-import DeleteNote from '../modals/DeleteNote'
+import {MdReadMore} from 'react-icons/md'
+import DeleteNote from '../../modals/DeleteNote'
+// import SingleNote from '../SingleNote/SingleNote'
 import {useState} from 'react'
+import {Link} from 'react-router-dom'
 
 function UserNote(props) {
-  const {title, owner, text, color, tags, isPublic} = props.note
+  const {title, owner, text, color, tags, isPublic, id} = props.note
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState('')
 
   const bgColor = {
     background: color,
+  }
+
+  const handleNavigation = () => {
+    console.log(props)
+    return (
+      <div key={id}>
+        <p>{id}</p>
+        <Link to={`/notes/${id}`}>go to note with id {id}</Link>
+      </div>
+    )
   }
 
   const openDeleteModal = () => {
@@ -24,6 +36,9 @@ function UserNote(props) {
   return (
     <article className="articleNote" style={bgColor}>
       <h3 className="noteOwner"> {owner} </h3>
+      <Link to={`/notes/${id}`}>
+        <MdReadMore className="note-details" onClick={handleNavigation} />
+      </Link>
       {isPublic == true ? (
         <div>
           <CiHeart className="favourite-icon" />

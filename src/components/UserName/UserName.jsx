@@ -1,8 +1,7 @@
-import '../styles/UserName.css'
-import {useLocalization} from '../localization/LocalizationContext'
+import './UserName.css'
+import {useLocalization} from '../../localization/LocalizationContext'
 
-function UserName({userNameInput, setUserNameInput}) {
-  const hasNums = str => /\d/.test(str)
+function UserName({userNameInput, setUserNameInput, hasNums}) {
   const {numRequired, name, invalName} = useLocalization()
 
   return (

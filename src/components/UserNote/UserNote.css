@@ -20,27 +20,37 @@
     float: right;
     position: relative;
     top: 9px;
-    transform: scale(2);
+    transform: scale(1.8);
 }
 
 .edit-icon {
     float: right;
     position: relative;
-    top: -25px;
+    top: 40px;
     right: -15px;
-    transform: scale(2);
+    transform: scale(1.8);
 }
 
 .favourite-icon{
     position: relative;
     float: right;
+    top: 7px;
+    transform: scale(1.8);
+}
+
+.note-details{
+    color: #000;
+    transform: scale(1.8);
+    position: relative;
+    float: right;
     top: -20px;
-    transform: scale(2);
+    right: 20px;
 }
 
 .delete-icon:hover, 
 .edit-icon:hover,
-.favourite-icon:hover{
+.favourite-icon:hover,
+.note-details:hover{
     cursor: pointer;
     transform: scale(2.3);
 }
@@ -62,6 +72,7 @@
 }
 
 .noteText {
+    width: 90%;
     font-size: 18px;
     max-height: 50%;
     overflow-y: auto;

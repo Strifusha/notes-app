@@ -1,8 +1,8 @@
-import UserNote from './UserNote'
-import NewNote from '../modals/NewNote'
-import '../styles/Notes.css'
+import UserNote from '../UserNote/UserNote'
+import NewNote from '../../modals/NewNote'
+import './Notes.css'
 import {useState} from 'react'
-import {useLocalization} from '../localization/LocalizationContext'
+import {useLocalization} from '../../localization/LocalizationContext'
 
 function Notes() {
   let usersNotes = [

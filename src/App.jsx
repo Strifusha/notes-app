@@ -1,9 +1,42 @@
-import LoginScreen from './components/LoginScreen'
-import Notes from './components/Notes'
+import LoginScreen from './components/LoginScreen/LoginScreen'
+import Root from './components/Root/Root'
+import SingleNote from './components/SingleNote/SingleNote'
+import Notes from './components/Notes/Notes'
+import ChangePass from './components/ChangePass/ChangePass'
+import Favorite from './components/Favorite/Favorite'
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import LocalizationContext from './localization/LocalizationContext'
 import {useState} from 'react'
 import en from './localization/en'
-import LocalizationContext from './localization/LocalizationContext'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: '/notes',
+        element: <Notes />,
+      },
+      {
+        path: '/favorite',
+        element: <Favorite />,
+      },
+      {
+        path: '/password',
+        element: <ChangePass />,
+      },
+      {
+        path: '/notes/:id',
+        element: <SingleNote />,
+      },
+    ],
+  },
+  {
+    path: '/login',
+    element: <LoginScreen />,
+  },
+])
 
 const App = () => {
   const [locale, setLocale] = useState(en)
@@ -13,17 +46,9 @@ const App = () => {
   }
 
   return (
-    <Router>
-      <LocalizationContext.Provider value={{...locale, changeLocale}}>
-        <div className="App">
-          <Routes>
-            <Route path="/notes" element={<Notes />} />
-            <Route path="/" element={<LoginScreen />} />
-          </Routes>
-        </div>
-      </LocalizationContext.Provider>
-    </Router>
+    <LocalizationContext.Provider value={{...locale, changeLocale}}>
+      <RouterProvider router={router} />
+    </LocalizationContext.Provider>
   )
 }
-
 export default App

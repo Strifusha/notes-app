@@ -5,9 +5,11 @@ const ru = {
   minLength: 'минимальная длина: 4 символа',
   password: 'Пароль',
   invalPass: 'Неправильный пароль',
-  submit: 'Подтвердить',
+  logIn: 'Войти',
+  logOut: 'Выйти',
   addNote: 'Добавить заметку',
   color: 'Цвет',
+  submit: 'Подтвердить',
   privateText: 'Закрытый',
   myTags: 'теги',
   name: 'Имя',
@@ -16,5 +18,9 @@ const ru = {
   sureDelete: 'Вы уверены что хотите удалить эту заметку?',
   confirm: 'Подтвердить',
   cancel: 'Отменить',
+  allNotes: 'Все заметки',
+  favorite: 'Избранное',
+  changePass: 'Изменить пароль',
+  newPass: 'Новый пароль',
 }
 export default ru
