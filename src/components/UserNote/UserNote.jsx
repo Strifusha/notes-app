@@ -3,7 +3,6 @@ import {TiDeleteOutline} from 'react-icons/ti'
 import {CiHeart, CiEdit} from 'react-icons/ci'
 import {MdReadMore} from 'react-icons/md'
 import DeleteNote from '../../modals/DeleteNote'
-// import SingleNote from '../SingleNote/SingleNote'
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
 

@@ -8,6 +8,7 @@ import Favorite from './components/Favorite/Favorite'
 import LocalizationContext from './localization/LocalizationContext'
 import en from './localization/en'
 import ProtectedRoute from './contexts/ProtectedRoute'
+import AuthContext from './contexts/AuthContext'
 
 const router = createBrowserRouter([
   {
@@ -40,15 +41,18 @@ const router = createBrowserRouter([
 
 const App = () => {
   const [locale, setLocale] = useState(en)
+  const [isAuth, setIsAuth] = useState(false)
 
   const changeLocale = newLocale => {
     setLocale(newLocale)
   }
 
   return (
-    <LocalizationContext.Provider value={{...locale, changeLocale}}>
-      <RouterProvider router={router} />
-    </LocalizationContext.Provider>
+    <AuthContext.Provider value={{isAuth, setIsAuth}}>
+      <LocalizationContext.Provider value={{...locale, changeLocale}}>
+        <RouterProvider router={router} />
+      </LocalizationContext.Provider>
+    </AuthContext.Provider>
   )
 }
 
