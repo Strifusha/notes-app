@@ -1,8 +1,8 @@
 import {useLocalization} from '../../localization/LocalizationContext'
 import {Outlet, Link} from 'react-router-dom'
-import './Root.css'
+import './NavigationBar.css'
 
-const Root = () => {
+const NavigationBar = () => {
   const {logOut, allNotes, favorite, changePass} = useLocalization()
 
   return (
@@ -26,4 +26,4 @@ const Root = () => {
   )
 }
 
-export default Root
+export default NavigationBar

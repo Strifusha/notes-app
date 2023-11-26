@@ -1,8 +1,11 @@
 import UserNote from '../UserNote/UserNote'
 import NewNote from '../../modals/NewNote'
+import NavigationBar from '../NavigationBar/NavigationBar'
 import './Notes.css'
 import {useState} from 'react'
 import {useLocalization} from '../../localization/LocalizationContext'
+import {useContext} from 'react'
+import AuthContext from '../../contexts/AuthContext'
 
 function Notes() {
   let usersNotes = [
@@ -39,7 +42,8 @@ function Notes() {
       title: 'my flowers',
     },
   ]
-
+  const {isAuth, setIsAuth} = useContext(AuthContext)
+  console.log(isAuth, setIsAuth)
   const {addNote} = useLocalization()
   const [isModalOpen, setIsModalOpen] = useState('')
 
@@ -53,6 +57,7 @@ function Notes() {
 
   return (
     <div className="notes-page">
+      <NavigationBar />
       <button onClick={openModal} className="addNote" type="button">
         {addNote}
       </button>

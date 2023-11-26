@@ -1,36 +1,36 @@
+import {createBrowserRouter, redirect, RouterProvider} from 'react-router-dom'
+import {useState} from 'react'
 import LoginScreen from './components/LoginScreen/LoginScreen'
-import Root from './components/Root/Root'
 import SingleNote from './components/SingleNote/SingleNote'
 import Notes from './components/Notes/Notes'
 import ChangePass from './components/ChangePass/ChangePass'
 import Favorite from './components/Favorite/Favorite'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import LocalizationContext from './localization/LocalizationContext'
-import {useState} from 'react'
 import en from './localization/en'
+import ProtectedRoute from './contexts/ProtectedRoute'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
-    children: [
-      {
-        path: '/notes',
-        element: <Notes />,
-      },
-      {
-        path: '/favorite',
-        element: <Favorite />,
-      },
-      {
-        path: '/password',
-        element: <ChangePass />,
-      },
-      {
-        path: '/notes/:id',
-        element: <SingleNote />,
-      },
-    ],
+    loader() {
+      return redirect('/notes')
+    },
+  },
+  {
+    path: '/notes',
+    element: <ProtectedRoute element={<Notes />} />,
+  },
+  {
+    path: '/favorite',
+    element: <ProtectedRoute element={<Favorite />} />,
+  },
+  {
+    path: '/password',
+    element: <ProtectedRoute element={<ChangePass />} />,
+  },
+  {
+    path: '/notes/:id',
+    element: <ProtectedRoute element={<SingleNote />} />,
   },
   {
     path: '/login',
@@ -51,4 +51,5 @@ const App = () => {
     </LocalizationContext.Provider>
   )
 }
+
 export default App

@@ -3,7 +3,6 @@ import {useLocalization} from '../../localization/LocalizationContext'
 import SubmitBtn from '../SubmitBtn/SubmitBtn'
 import UserName from '../UserName/UserName'
 import Password from '../Password/Password'
-
 import './LoginScreen.css'
 
 function LoginScreen() {
