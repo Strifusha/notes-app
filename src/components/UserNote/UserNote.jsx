@@ -4,24 +4,18 @@ import {CiHeart, CiEdit} from 'react-icons/ci'
 import {MdReadMore} from 'react-icons/md'
 import DeleteNote from '../../modals/DeleteNote'
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
-function UserNote(props) {
-  const {title, owner, text, color, tags, isPublic, id} = props.note
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState('')
-
+function UserNote({onEdit, ...props}) {
+  const {title, owner, text, color, isPublic, id} = props.note
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const navigate = useNavigate()
   const bgColor = {
     background: color,
   }
 
   const handleNavigation = () => {
-    console.log(props)
-    return (
-      <div key={id}>
-        <p>{id}</p>
-        <Link to={`/notes/${id}`}>go to note with id {id}</Link>
-      </div>
-    )
+    navigate(`/notes/${id}`)
   }
 
   const openDeleteModal = () => {
@@ -35,9 +29,7 @@ function UserNote(props) {
   return (
     <article className="articleNote" style={bgColor}>
       <h3 className="noteOwner"> {owner} </h3>
-      <Link to={`/notes/${id}`}>
-        <MdReadMore className="note-details" onClick={handleNavigation} />
-      </Link>
+      <MdReadMore className="note-details" onClick={handleNavigation} />
       {isPublic == true ? (
         <div>
           <CiHeart className="favourite-icon" />
@@ -46,19 +38,12 @@ function UserNote(props) {
       ) : (
         <div>
           <TiDeleteOutline onClick={openDeleteModal} className="delete-icon" />
-          <CiEdit className="edit-icon" />
+          <CiEdit onClick={onEdit} className="edit-icon" />
           <p className="private">(Private)</p>
         </div>
       )}
       <h2 className="noteTitle">{title}</h2>
       <p className="noteText">{text}</p>
-      <div className="tags-container">
-        {tags.map(tag => (
-          <p className="tags" key={tag}>
-            {tag}
-          </p>
-        ))}
-      </div>
       {isDeleteModalOpen && <DeleteNote onClose={closeDeleteModal} />}
     </article>
   )

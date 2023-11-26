@@ -36,11 +36,7 @@ function ChangePass() {
             value={newPassword}
             onChange={e => setNewPassword(e.target.value)}
           />
-          {newPassword.length < 4 ? (
-            <p className="err-pass">{minLength}</p>
-          ) : (
-            <p className="ok-pass">OK</p>
-          )}
+          {newPassword.length < 4 && <p className="err-pass">{minLength}</p>}
           <input
             type="password"
             className="password"

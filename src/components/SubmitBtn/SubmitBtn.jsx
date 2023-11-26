@@ -9,7 +9,6 @@ function SubmitBtn({userNameInput, hasNums, userPass}) {
   const navigate = useNavigate()
   const handleNavigation = () => {
     context.setIsAuth(true)
-    console.log(context.setIsAuth)
     navigate('/notes')
   }
 
