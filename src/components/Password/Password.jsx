@@ -1,8 +1,8 @@
-import '../styles/Password.css'
-import eyeClosed from '../img/eyeClosed.png'
-import eyeOpen from '../img/eyeOpen.png'
+import './Password.css'
+import eyeClosed from '../../img/eyeClosed.png'
+import eyeOpen from '../../img/eyeOpen.png'
 import {useState} from 'react'
-import {useLocalization} from '../localization/LocalizationContext'
+import {useLocalization} from '../../localization/LocalizationContext'
 
 function Password({userPass, setUserPass}) {
   const [showPass, setShowPass] = useState(false)
