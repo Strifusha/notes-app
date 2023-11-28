@@ -5,12 +5,40 @@ import './Notes.css'
 import {useState} from 'react'
 import {useLocalization} from '../../localization/LocalizationContext'
 import {useNotesContext} from '../../contexts/NotesContext'
+import {useEffect} from 'react'
 
 function Notes() {
   const {addNote} = useLocalization()
   const [isModalOpen, setIsModalOpen] = useState('')
-  const {isNote} = useNotesContext()
+  const {isNote, setIsNote} = useNotesContext()
   const [selectedNote, setSelectedNote] = useState('')
+
+  useEffect(() => {
+    const storedNotes = JSON.parse(localStorage.getItem('notes')) || []
+    if (storedNotes.length === 0) {
+      const nextNotes = isNote.map((note, index) => {
+        return {...note, id: index + 1, favorite: false}
+      })
+      setIsNote(nextNotes)
+    } else {
+      setIsNote(storedNotes)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(isNote))
+  }, [isNote])
+
+  const resetSelectedNote = () => {
+    setSelectedNote({
+      owner: '',
+      title: '',
+      text: '',
+      tags: [],
+      color: '',
+      isPublic: false,
+    })
+  }
 
   const openEditModal = note => {
     setSelectedNote(note)
@@ -18,6 +46,7 @@ function Notes() {
   }
 
   const openModal = () => {
+    resetSelectedNote()
     setIsModalOpen(true)
   }
 
@@ -32,12 +61,8 @@ function Notes() {
         {addNote}
       </button>
       <div id="allNotes">
-        {isNote.map((note, index) => (
-          <UserNote
-            note={{...note, id: index + 1}}
-            key={index + 1}
-            onEdit={() => openEditModal(note)}
-          />
+        {isNote.map(note => (
+          <UserNote note={{...note}} key={note.id} onEdit={() => openEditModal(note)} />
         ))}
         {isModalOpen && <NewNote onClose={closeModal} selectedNote={selectedNote} />}
       </div>

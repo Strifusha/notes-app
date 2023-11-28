@@ -44,15 +44,7 @@ function NewNote({onClose, selectedNote}) {
       !selectedNote.isPublic && setIsPrivate(true)
     }
   }, [selectedNote])
-  // const resetStates = () => {
-  //   setMyName('')
-  //   setMyTitle('')
-  //   setMyText('')
-  //   setTags('')
-  //   setIsPrivate('')
-  //   setMyColor('')
-  //   // onClose()
-  // }
+
   return (
     <div className="modal-overlay">
       <div className="newNote">
@@ -96,7 +88,7 @@ function NewNote({onClose, selectedNote}) {
             <input type="color" onChange={handleIColorChange} value={myColor} />
           </label>
         </div>
-        <button type="button" onClick={onClose} className="submitNewNote">
+        <button type="button" className="submitNewNote">
           {addNote}
         </button>
       </div>
