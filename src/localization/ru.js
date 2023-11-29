@@ -1,6 +1,6 @@
 const ru = {
   appName: 'Ваше приложение для заметок',
-  numRequired: 'числа обязательны',
+  numNotRequired: 'числа не обязательны',
   invalName: 'Неправильное имя',
   minLength: 'минимальная длина: 4 символа',
   password: 'Пароль',

@@ -6,11 +6,12 @@ import ChangePass from './components/ChangePass/ChangePass'
 import Favorite from './components/Favorite/Favorite'
 import LocalizationContext from './localization/LocalizationContext'
 import en from './localization/en'
-import ProtectedRoute from './contexts/ProtectedRoute'
 import AuthContext from './contexts/AuthContext'
 import NotesContext from './contexts/NotesContext'
 import SingleNote from './components/SingleNote/SingleNote'
+import withAuthCheck from './contexts/withAuthCheck'
 
+const ProtectedRoute = withAuthCheck(({element}) => element)
 const router = createBrowserRouter([
   {
     path: '/',

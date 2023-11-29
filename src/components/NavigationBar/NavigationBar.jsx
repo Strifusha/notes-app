@@ -1,16 +1,13 @@
 import {useLocalization} from '../../localization/LocalizationContext'
 import {Outlet, Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
-import {useAuthContext} from '../../contexts/AuthContext'
-
 import './NavigationBar.css'
 
 const NavigationBar = () => {
   const {logOut, allNotes, favorite, changePass} = useLocalization()
-  const context = useAuthContext()
   const navigate = useNavigate()
   const handleNavigation = () => {
-    context.setIsAuth(false)
+    localStorage.removeItem('authToken')
     navigate('/login')
   }
   return (

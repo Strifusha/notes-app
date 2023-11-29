@@ -1,6 +1,6 @@
 const en = {
   appName: 'Your notes app',
-  numRequired: 'numbers are required',
+  numNotRequired: 'numbers are not required',
   invalName: 'Invalid username',
   minLength: 'min length: 4 characters',
   password: 'Password',
