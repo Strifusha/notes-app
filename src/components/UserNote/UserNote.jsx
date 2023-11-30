@@ -31,7 +31,7 @@ function UserNote({onEdit, showDetails = true, ...props}) {
   }
 
   const moveToFavorite = () => {
-    isFavorite ? setIsFavorite(false) : setIsFavorite(true)
+    setIsFavorite(!isFavorite)
     setIsNote(prevNotes =>
       prevNotes.map(note => (note.id === id ? {...note, favorite: !favorite, key: note.id} : note))
     )
