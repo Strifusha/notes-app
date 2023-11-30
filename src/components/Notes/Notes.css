@@ -2,12 +2,13 @@
 
 .notes-page{
     background: #2b2828;
+    overflow: auto;
     height: 100vh;  
 }
 
 #allNotes{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .addNote{
@@ -22,7 +23,7 @@
     writing-mode: vertical-lr;
     text-orientation: upright;
     min-height: 280px;
-    height: 95%;
+    height: 90%;
 }
 
 .addNote:hover{

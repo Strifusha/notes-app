@@ -1,10 +1,18 @@
 import NavigationBar from '../NavigationBar/NavigationBar'
+import {useNotesContext} from '../../contexts/NotesContext'
+import UserNote from '../UserNote/UserNote'
 
 function Favorite() {
+  const {isNote} = useNotesContext()
+  const favoriteNotes = isNote.filter(note => note.favorite === true)
   return (
-    <div>
+    <div className="notes-page">
       <NavigationBar />
-      <h1>Favorite</h1>
+      <div id="allNotes">
+        {favoriteNotes.map(note => (
+          <UserNote note={{...note}} key={note.id} />
+        ))}
+      </div>
     </div>
   )
 }

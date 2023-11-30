@@ -2,6 +2,8 @@
 
 #welcome-screen {
     width: 100%;
+    min-width: 850px;
+    min-height: 500px;
     height: 100vh;
     background: url('../../img/curclesLeft.png'), url('../../img/curclesRight.png');
     background-repeat: no-repeat;
