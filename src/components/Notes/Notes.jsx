@@ -2,32 +2,37 @@ import UserNote from '../UserNote/UserNote'
 import NewNote from '../../modals/NewNote'
 import NavigationBar from '../NavigationBar/NavigationBar'
 import './Notes.css'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {useLocalization} from '../../localization/LocalizationContext'
-import {useNotesContext} from '../../contexts/NotesContext'
-import {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {noteRequest, addNotesIdsActionCreator} from '../../redux/reducers/notes'
+import {useCallback} from 'react'
 
 function Notes() {
   const {addNote} = useLocalization()
-  const [isModalOpen, setIsModalOpen] = useState('')
-  const {isNote, setIsNote} = useNotesContext()
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedNote, setSelectedNote] = useState('')
+  const dispatch = useDispatch()
+  const notes = useSelector(state => state.notes.notes)
 
-  useEffect(() => {
+  const fetchData = useCallback(async () => {
     const storedNotes = JSON.parse(localStorage.getItem('notes')) || []
     if (storedNotes.length === 0) {
-      const nextNotes = isNote.map((note, index) => {
-        return {...note, id: index + 1, favorite: false}
-      })
-      setIsNote(nextNotes)
+      const nextNotes = notes.map((note, index) => ({
+        ...note,
+        id: index + 1,
+        favorite: false,
+      }))
+      dispatch(addNotesIdsActionCreator(nextNotes))
+      localStorage.setItem('notes', JSON.stringify(nextNotes))
     } else {
-      setIsNote(storedNotes)
+      dispatch(noteRequest())
     }
-  }, [])
+  }, [dispatch, notes])
 
   useEffect(() => {
-    localStorage.setItem('notes', JSON.stringify(isNote))
-  }, [isNote])
+    fetchData()
+  }, [fetchData])
 
   const resetSelectedNote = () => {
     setSelectedNote({
@@ -61,8 +66,12 @@ function Notes() {
         {addNote}
       </button>
       <div id="allNotes">
-        {isNote.map(note => (
-          <UserNote note={{...note}} key={note.id} onEdit={() => openEditModal(note)} />
+        {notes.map((note, index) => (
+          <UserNote
+            note={{...note, id: index + 1}}
+            key={note.id}
+            onEdit={() => openEditModal(note)}
+          />
         ))}
         {isModalOpen && <NewNote onClose={closeModal} selectedNote={selectedNote} />}
       </div>
