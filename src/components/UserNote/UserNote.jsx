@@ -5,13 +5,12 @@ import {MdReadMore} from 'react-icons/md'
 import DeleteNote from '../../modals/DeleteNote'
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-import {useNotesContext} from '../../contexts/NotesContext'
+import {useDispatch} from 'react-redux'
 
 function UserNote({onEdit, showDetails = true, ...props}) {
   const {title, owner, text, color, isPublic, id, favorite, tags} = props.note
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const [isFavorite, setIsFavorite] = useState(false)
-  const {setIsNote} = useNotesContext()
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
   const bgColor = {
@@ -31,10 +30,11 @@ function UserNote({onEdit, showDetails = true, ...props}) {
   }
 
   const moveToFavorite = () => {
-    setIsFavorite(!isFavorite)
-    setIsNote(prevNotes =>
-      prevNotes.map(note => (note.id === id ? {...note, favorite: !favorite, key: note.id} : note))
-    )
+    console.log(id)
+    dispatch({
+      type: 'TOGGLE_FAVORITE',
+      payload: id,
+    })
   }
 
   return (

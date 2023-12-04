@@ -1,10 +1,11 @@
 import NavigationBar from '../NavigationBar/NavigationBar'
-import {useNotesContext} from '../../contexts/NotesContext'
+import {useSelector} from 'react-redux'
 import UserNote from '../UserNote/UserNote'
 
 function Favorite() {
-  const {isNote} = useNotesContext()
-  const favoriteNotes = isNote.filter(note => note.favorite === true)
+  const notes = useSelector(state => state.notes.notes)
+  const favoriteNotes = notes.filter(note => note.favorite === true)
+
   return (
     <div className="notes-page">
       <NavigationBar />
