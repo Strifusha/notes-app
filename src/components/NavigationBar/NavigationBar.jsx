@@ -2,12 +2,17 @@ import {useLocalization} from '../../localization/LocalizationContext'
 import {Outlet, Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 import './NavigationBar.css'
+import {useDispatch} from 'react-redux'
 
 const NavigationBar = () => {
   const {logOut, allNotes, favorite, changePass} = useLocalization()
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleNavigation = () => {
     localStorage.removeItem('authToken')
+    dispatch({
+      type: 'RESET_NOTES',
+    })
     navigate('/login')
   }
   return (

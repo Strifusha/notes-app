@@ -59,6 +59,8 @@ export const notesReducer = (state = initialState, action) => {
           note.id === action.payload ? {...note, favorite: !note.favorite} : note
         ),
       }
+    case 'RESET_NOTES':
+      return initialState
     default:
       return state
   }

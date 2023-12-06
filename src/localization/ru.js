@@ -10,7 +10,7 @@ const ru = {
   addNote: 'Добавить заметку',
   color: 'Цвет',
   submit: 'Подтвердить',
-  privateText: 'Закрытый',
+  prublicText: 'Публичный',
   myTags: 'теги',
   name: 'Имя',
   title: 'Название',

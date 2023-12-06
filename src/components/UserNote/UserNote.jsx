@@ -30,7 +30,6 @@ function UserNote({onEdit, showDetails = true, ...props}) {
   }
 
   const moveToFavorite = () => {
-    console.log(id)
     dispatch({
       type: 'TOGGLE_FAVORITE',
       payload: id,

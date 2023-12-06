@@ -4,17 +4,14 @@ import {useLocalization} from '../localization/LocalizationContext'
 import {useEffect} from 'react'
 
 function NewNote({onClose, selectedNote}) {
-  const [myName, setMyName] = useState('')
   const [myTitle, setMyTitle] = useState('')
   const [myText, setMyText] = useState('')
-  const [tags, setTags] = useState('')
-  const [isPrivate, setIsPrivate] = useState('')
+  const [tags, setTags] = useState([])
+  const [isPublic, setIsPublic] = useState('')
   const [myColor, setMyColor] = useState('')
 
-  const {name, title, text, privateText, color, myTags, addNote} = useLocalization()
-  const handleNameChange = event => {
-    setMyName(event.target.value)
-  }
+  const {title, text, publicText, color, myTags, addNote} = useLocalization()
+
   const handleTitleChange = event => {
     setMyTitle(event.target.value)
   }
@@ -23,8 +20,8 @@ function NewNote({onClose, selectedNote}) {
     setMyText(event.target.value)
   }
 
-  const handleIsPrivateChange = () => {
-    setIsPrivate(prevIsPrivate => !prevIsPrivate)
+  const handleIsPublicChange = () => {
+    setIsPublic(previsPublic => !previsPublic)
   }
 
   const handleIColorChange = event => {
@@ -32,16 +29,50 @@ function NewNote({onClose, selectedNote}) {
   }
 
   const handleInputChange = event => {
-    const formattedTags = event.target.value.replace(/\s/g, ',')
-    setTags(formattedTags)
+    const newTags = event.target.value.split(' ')
+    setTags(newTags)
   }
+
+  const addNewNote = async () => {
+    const data = {
+      color: myColor,
+      isPublic: isPublic,
+      text: myText,
+      tags: tags,
+      title: myTitle,
+    }
+    console.log(data)
+    const token = localStorage.getItem('authToken')
+    const url = 'https://dull-pear-haddock-belt.cyclic.app/notes'
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        mode: 'no-cors',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to post public notes')
+        }
+        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error during fetch:', error.message)
+      })
+  }
+
   useEffect(() => {
     if (selectedNote) {
-      setMyName(selectedNote.owner)
       setMyTitle(selectedNote.title)
       setMyText(selectedNote.text)
       setTags(selectedNote.tags.join(', '))
-      !selectedNote.isPublic && setIsPrivate(true)
+      !selectedNote.isPublic && setIsPublic(true)
     }
   }, [selectedNote])
 
@@ -51,13 +82,6 @@ function NewNote({onClose, selectedNote}) {
         <button className="closeBtn" onClick={onClose}>
           &times;
         </button>
-        <input
-          className="newName"
-          value={myName}
-          onChange={handleNameChange}
-          type="text"
-          placeholder={name}
-        />
         <input
           className="newTitle"
           type="text"
@@ -80,15 +104,15 @@ function NewNote({onClose, selectedNote}) {
         />
         <div className="color-container">
           <label htmlFor="checkbox" className="newPrivate">
-            {privateText}
-            <input type="checkbox" onChange={handleIsPrivateChange} checked={isPrivate} />
+            {publicText}
+            <input type="checkbox" onChange={handleIsPublicChange} checked={isPublic} />
           </label>
           <label htmlFor="color" className="newColor">
             {color}
             <input type="color" onChange={handleIColorChange} value={myColor} />
           </label>
         </div>
-        <button type="button" className="submitNewNote">
+        <button type="button" className="submitNewNote" onClick={addNewNote}>
           {addNote}
         </button>
       </div>

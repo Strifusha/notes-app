@@ -10,7 +10,7 @@ const en = {
   addNote: 'Add note',
   color: 'Color',
   submit: 'Submit',
-  privateText: 'Private',
+  publicText: 'Public',
   myTags: 'Tags',
   name: 'Name',
   title: 'Title',

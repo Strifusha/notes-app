@@ -28,7 +28,7 @@ function SubmitBtn({userNameInput, userPass}) {
       username: userNameInput,
       password: userPass,
     }
-    fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
