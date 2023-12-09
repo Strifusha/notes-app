@@ -30,7 +30,6 @@ function UserNote({onEdit, showDetails = true, ...props}) {
   }
 
   const moveToFavorite = () => {
-    console.log(id)
     dispatch({
       type: 'TOGGLE_FAVORITE',
       payload: id,
@@ -43,18 +42,20 @@ function UserNote({onEdit, showDetails = true, ...props}) {
       {showDetails && <MdReadMore className="note-details" onClick={handleNavigation} />}
       {isPublic ? (
         <div>
-          <p
-            className={`favourite-icon ${favorite ? 'myFavorite' : ''}`}
-            style={bgColor}
-            onClick={moveToFavorite}>
-            &#x2764;
-          </p>
+          {showDetails && (
+            <p
+              className={`favourite-icon ${favorite ? 'myFavorite' : ''}`}
+              style={bgColor}
+              onClick={moveToFavorite}>
+              &#x2764;
+            </p>
+          )}
           <p className="public">(Public)</p>
         </div>
       ) : (
         <div>
           {showDetails && <TiDeleteOutline onClick={openDeleteModal} className="delete-icon" />}
-          {showDetails && <CiEdit onClick={onEdit} className="edit-icon" />}
+          {showDetails && <CiEdit onClick={() => onEdit(id)} className="edit-icon" />}
           <p className="private">(Private)</p>
         </div>
       )}

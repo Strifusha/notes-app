@@ -5,18 +5,23 @@ import ChangePass from './ChangePass/ChangePass'
 import Favorite from './Favorite/Favorite'
 import SingleNote from './SingleNote/SingleNote'
 import withAuthCheck from '../contexts/withAuthCheck'
+import PrivateNotes from './PrivateNotes/PrivateNotes'
 
 const ProtectedRoute = withAuthCheck(({element}) => element)
 const Router = createBrowserRouter([
   {
     path: '/',
     loader() {
-      return redirect('/notes')
+      return redirect('/public')
     },
   },
   {
-    path: '/notes',
+    path: '/public',
     element: <ProtectedRoute element={<Notes />} />,
+  },
+  {
+    path: '/private',
+    element: <ProtectedRoute element={<PrivateNotes />} />,
   },
   {
     path: '/favorite',
@@ -27,7 +32,7 @@ const Router = createBrowserRouter([
     element: <ProtectedRoute element={<ChangePass />} />,
   },
   {
-    path: '/notes/:id',
+    path: '/notes/:NOTE_ID',
     element: <ProtectedRoute element={<SingleNote />} />,
   },
   {

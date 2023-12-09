@@ -10,9 +10,8 @@ function ChangePass() {
   const [newPassword, setNewPassword] = useState('')
   const [checkPass, setCheckPass] = useState('')
 
-  const handlePasswordChange = () => {
-    checkPass.length >= 4 &&
-      checkPass == newPassword &&
+  const SubmitChangePassword = () => {
+    checkPass == newPassword &&
       toast.success('Password successfully changed', {
         position: 'top-center',
         autoClose: 3000,
@@ -20,6 +19,36 @@ function ChangePass() {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
+      })
+  }
+
+  const handlePasswordChange = () => {
+    const token = localStorage.getItem('authToken')
+    const url = 'https://dull-pear-haddock-belt.cyclic.app/auth'
+    const data = {
+      password: newPassword,
+    }
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => {
+        if (!response.ok) {
+          console.log('err', response)
+          throw new Error('Your Password is not changed!')
+        }
+        return response.text()
+      })
+      .then(responseData => {
+        console.log('Password changed successfully', responseData)
+        SubmitChangePassword()
+      })
+      .catch(error => {
+        console.error('Error during fetch:', error.message)
       })
   }
 

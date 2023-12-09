@@ -10,7 +10,7 @@ const ru = {
   addNote: 'Добавить заметку',
   color: 'Цвет',
   submit: 'Подтвердить',
-  privateText: 'Закрытый',
+  prublicText: 'Публичный',
   myTags: 'теги',
   name: 'Имя',
   title: 'Название',
@@ -22,5 +22,7 @@ const ru = {
   favorite: 'Избранное',
   changePass: 'Изменить пароль',
   newPass: 'Новый пароль',
+  privateNote: 'Личные',
+  publicNote: 'Публичные',
 }
 export default ru

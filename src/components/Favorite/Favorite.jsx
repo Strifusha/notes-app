@@ -4,7 +4,7 @@ import UserNote from '../UserNote/UserNote'
 
 function Favorite() {
   const notes = useSelector(state => state.notes.notes)
-  const favoriteNotes = notes.filter(note => note.favorite === true)
+  const favoriteNotes = notes.filter(note => note.favorite)
 
   return (
     <div className="notes-page">
