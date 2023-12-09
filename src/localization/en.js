@@ -22,5 +22,7 @@ const en = {
   favorite: 'Favorite',
   changePass: 'Change Password',
   newPass: 'New Password',
+  privateNote: 'Private',
+  publicNote: 'Public',
 }
 export default en

@@ -22,5 +22,7 @@ const ru = {
   favorite: 'Избранное',
   changePass: 'Изменить пароль',
   newPass: 'Новый пароль',
+  privateNote: 'Личные',
+  publicNote: 'Публичные',
 }
 export default ru

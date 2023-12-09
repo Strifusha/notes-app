@@ -5,7 +5,7 @@ import './NavigationBar.css'
 import {useDispatch} from 'react-redux'
 
 const NavigationBar = () => {
-  const {logOut, allNotes, favorite, changePass} = useLocalization()
+  const {logOut, publicNote, privateNote, favorite, changePass} = useLocalization()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleNavigation = () => {
@@ -18,8 +18,11 @@ const NavigationBar = () => {
   return (
     <div>
       <div className="navBar">
-        <Link to={'/notes'} className="navLink">
-          {allNotes}
+        <Link to={'/public'} className="navLink">
+          {publicNote}
+        </Link>
+        <Link to={'/private'} className="navLink">
+          {privateNote}
         </Link>
         <Link to={'/favorite'} className="navLink">
           {favorite}

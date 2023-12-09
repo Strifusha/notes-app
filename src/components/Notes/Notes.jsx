@@ -12,7 +12,6 @@ function Notes() {
   const [selectedNote, setSelectedNote] = useState('')
   const dispatch = useDispatch()
   const notes = useSelector(state => state.notes.notes)
-  const [notesLoaded, setNotesLoaded] = useState(false)
 
   const getPublicNotes = async () => {
     const token = localStorage.getItem('authToken')
@@ -33,17 +32,16 @@ function Notes() {
         return response.json()
       })
       .then(data => {
-        !notesLoaded && fetchData(data)
-        console.log(data)
+        data.length !== notes.length &&
+          fetchData(data) &&
+          localStorage.setItem('notes', JSON.stringify(data))
       })
       .catch(error => {
         console.error('Error during fetch:', error.message)
       })
-      .finally(localStorage.setItem('notes', JSON.stringify(notes)))
   }
 
   const fetchData = data => {
-    setNotesLoaded(true)
     data.map(note => {
       dispatch({
         type: 'ADD_NOTE',
@@ -53,8 +51,8 @@ function Notes() {
   }
 
   useEffect(() => {
-    !notesLoaded && getPublicNotes()
-  }, [notesLoaded])
+    getPublicNotes()
+  }, [])
 
   const resetSelectedNote = () => {
     setSelectedNote({
@@ -67,6 +65,7 @@ function Notes() {
   }
 
   const openEditModal = note => {
+    console.log(note, 'NOTE!!!')
     setSelectedNote(note)
     setIsModalOpen(true)
   }
@@ -87,13 +86,11 @@ function Notes() {
         {addNote}
       </button>
       <div id="allNotes">
-        {notes.map((note, index) => (
-          <UserNote
-            note={{...note, id: index + 1}}
-            key={note.id}
-            onEdit={() => openEditModal(note)}
-          />
-        ))}
+        {notes
+          .filter(note => note.isPublic)
+          .map(note => (
+            <UserNote note={{...note}} key={note.id} onEdit={() => openEditModal(note)} />
+          ))}
         {isModalOpen && <NewNote onClose={closeModal} selectedNote={selectedNote} />}
       </div>
     </div>

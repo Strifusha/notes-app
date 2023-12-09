@@ -7,7 +7,7 @@ function NewNote({onClose, selectedNote}) {
   const [myTitle, setMyTitle] = useState('')
   const [myText, setMyText] = useState('')
   const [tags, setTags] = useState([])
-  const [isPublic, setIsPublic] = useState('')
+  const [isPublic, setIsPublic] = useState(false)
   const [myColor, setMyColor] = useState('')
 
   const {title, text, publicText, color, myTags, addNote} = useLocalization()
@@ -34,6 +34,9 @@ function NewNote({onClose, selectedNote}) {
   }
 
   const addNewNote = async () => {
+    if (myTitle !== '') {
+      return updateNote()
+    }
     const data = {
       color: myColor,
       isPublic: isPublic,
@@ -41,7 +44,7 @@ function NewNote({onClose, selectedNote}) {
       tags: tags,
       title: myTitle,
     }
-    console.log(data)
+
     const token = localStorage.getItem('authToken')
     const url = 'https://dull-pear-haddock-belt.cyclic.app/notes'
     await fetch(url, {
@@ -57,7 +60,38 @@ function NewNote({onClose, selectedNote}) {
         if (!response.ok) {
           throw new Error('Failed to post public notes')
         }
-        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error during fetch:', error.message)
+      })
+  }
+
+  const updateNote = async () => {
+    const data = {
+      color: myColor,
+      isPublic: isPublic,
+      text: myText,
+      tags: tags,
+      title: myTitle,
+    }
+    const token = localStorage.getItem('authToken')
+    const url = `https://dull-pear-haddock-belt.cyclic.app/notes?id=${selectedNote.id}`
+    await fetch(url, {
+      method: 'PUT',
+      headers: {
+        mode: 'no-cors',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to update your note')
+        }
       })
       .then(data => {
         console.log(data)
